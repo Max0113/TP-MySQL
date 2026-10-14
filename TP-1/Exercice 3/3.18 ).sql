@@ -1,15 +1,15 @@
 SELECT
-    id_client,
-    nom,
-    prenom
-FROM Client
-WHERE id_client IN (
-    SELECT id_client
-    FROM Location 
-    WHERE immatriculation IN (
-        SELECT immatriculation
-        FROM Vehicule 
-        WHERE code_cat = 'SUV' -- 5 vehicule de SUV
+    c.id_client,
+    c.nom,
+    c.prenom
+FROM Client c 
+WHERE c.id_client IN (
+    SELECT l.id_client
+    FROM Location l
+    WHERE l.immatriculation IN (
+        SELECT v.immatriculation
+        FROM Vehicule v
+        WHERE v.code_cat = 'SUV' -- 5 vehicule de SUV
     ) -- tout client que deja loue une vehicule de SUV '15'
 ); -- givem nom and peronom 
 
